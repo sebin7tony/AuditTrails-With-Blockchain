@@ -34,15 +34,17 @@ class App extends Component {
     const trailCount = await this.auditTrailList.methods.trailCount().call();
     this.setState({ trailCount })
     for (var i = 1; i <= trailCount; i++) {
-      const entry = await this.auditTrailList.methods.trails(i).call();
+
+      const entry = await auditTrailList.methods.trails(i).call();
       console.log(entry);
+      const newEntry = {name : entry['name'],date : entry['date']}
+
 
       this.setState({
-        entryList: [...this.state.entryList, entry]
+        entryList: [...this.state.entryList, newEntry]
       })
     }
     console.log(this.state.entryList);
-    
   }
 
   async createAuditTrail(data) {
@@ -61,8 +63,8 @@ class App extends Component {
           <Tab eventKey="create-assessment" title="Create Assessment">
             <CreateAssessment createAuditTrail={this.createAuditTrail} />
           </Tab>
-          <Tab eventKey="view-audittrails" title="View Audit Trails">
-            <ViewAudittrails />
+          <Tab eventKey="profile" title="View Audit trails">
+            <ViewAudittrails entryList = {this.state.entryList}/>
           </Tab>
         </Tabs>
       </div>
