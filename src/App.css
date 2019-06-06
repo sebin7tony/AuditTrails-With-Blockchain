@@ -30,6 +30,11 @@
   padding: 20px;
 }
 
+.App .form-wrapper .container {
+  max-width: 100%;
+}
+
+
 .App .form-group, .App p {
   text-align: left;
 }
@@ -54,6 +59,7 @@
 .submit-btn {
   float:right;
 }
+
 
 @keyframes App-logo-spin {
   from {
