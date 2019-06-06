@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-//import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import './App.css';
 import {Tabs, Tab} from 'react-bootstrap';
 
@@ -7,14 +6,11 @@ import {Tabs, Tab} from 'react-bootstrap';
 import CreateAssessment from './components/createAssessment';
 import ViewAssessment from './components/viewAssessment';
 
-
-import ReactDOM from 'react-dom';
-
 class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      key: 'home',
+      key: 'create-assessment',
     };
   }
 
@@ -26,10 +22,10 @@ class App extends Component {
           activeKey={this.state.key}
           onSelect={key => this.setState({ key })}
         >
-          <Tab eventKey="home" title="Create Assessment">
+          <Tab eventKey="create-assessment" title="Create Assessment">
             <CreateAssessment />
           </Tab>
-          <Tab eventKey="profile" title="View Assessment">
+          <Tab eventKey="view-assessment" title="View Assessment">
             <ViewAssessment />
           </Tab>
         </Tabs>
