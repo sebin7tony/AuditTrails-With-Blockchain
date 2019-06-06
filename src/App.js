@@ -7,7 +7,7 @@ import { TRAIL_LIST_ABI, TRAIL_LIST_ADDRESS } from './config'
 
 //import views over here
 import CreateAssessment from './components/createAssessment';
-import ViewAssessment from './components/viewAssessment';
+import ViewAudittrails from './components/viewAuditTrails';
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      key: 'home',
+      key: 'profile',
       account : '',
       entryList : [],
       trailCount : 0
@@ -54,11 +54,11 @@ class App extends Component {
           activeKey={this.state.key}
           onSelect={key => this.setState({ key })}
         >
+          <Tab eventKey="profile" title="View Audit trails">
+            <ViewAudittrails />
+          </Tab>
           <Tab eventKey="home" title="Create Assessment">
             <CreateAssessment />
-          </Tab>
-          <Tab eventKey="profile" title="View Assessment">
-            <ViewAssessment />
           </Tab>
         </Tabs>
       </div>
