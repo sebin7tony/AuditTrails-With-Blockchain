@@ -6,7 +6,7 @@ import { TRAIL_LIST_ABI, TRAIL_LIST_ADDRESS } from './config'
 
 //import views over here
 import CreateAssessment from './components/createAssessment';
-import ViewAssessment from './components/viewAssessment';
+import ViewAudittrails from './components/viewAuditTrails';
 
 class App extends Component {
 
@@ -61,8 +61,8 @@ class App extends Component {
           <Tab eventKey="create-assessment" title="Create Assessment">
             <CreateAssessment createAuditTrail={this.createAuditTrail} />
           </Tab>
-          <Tab eventKey="view-assessment" title="View Assessment">
-            <ViewAssessment />
+          <Tab eventKey="view-audittrails" title="View Audit Trails">
+            <ViewAudittrails />
           </Tab>
         </Tabs>
       </div>
