@@ -17,9 +17,11 @@ class App extends Component {
       entryList : [],
       trailCount : 0,
       key: 'create-assessment',
+      auditTrailList : []
 
     };
     this.createAuditTrail = this.createAuditTrail.bind(this);
+    this.auditTrailList =undefined;
   }
 
   componentWillMount() {
@@ -27,18 +29,20 @@ class App extends Component {
   }
 
   async loadBlockchainData() {
-    this.web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
-    const accounts = await this.web3.eth.getAccounts()
+    const web3 = new Web3(Web3.givenProvider || "http://localhost:8545")
+    await window.ethereum.enable();
+    const accounts = await web3.eth.getAccounts()
     this.setState({ account: accounts[0] })
-    this.auditTrailList = new this.web3.eth.Contract(TRAIL_LIST_ABI, TRAIL_LIST_ADDRESS)
-    const trailCount = await this.auditTrailList.methods.trailCount().call();
+    console.log(accounts);
+    this.state.auditTrailList = new web3.eth.Contract(TRAIL_LIST_ABI, TRAIL_LIST_ADDRESS);
+    const trailCount = await this.state.auditTrailList.methods.trailCount().call();
     this.setState({ trailCount })
+  
     for (var i = 1; i <= trailCount; i++) {
 
-      const entry = await auditTrailList.methods.trails(i).call();
+      const entry = await this.state.auditTrailList.methods.trails(i).call();
       console.log(entry);
       const newEntry = {name : entry['name'],date : entry['date']}
-
 
       this.setState({
         entryList: [...this.state.entryList, newEntry]
@@ -49,7 +53,10 @@ class App extends Component {
 
   async createAuditTrail(data) {
     console.log('the audit trail values passed',data, this.state.entryList);
-    const addEntry = await this.auditTrailList.methods.addEntry(data.company,data.timePeriod).call();
+    this.state.auditTrailList.methods.addEntry(data.complianceControl,data.timePeriod).send({ from:  this.state.account}) 
+    .once('receipt', (receipt) => {
+        console.log("added");
+    });
   }
 
   render(){

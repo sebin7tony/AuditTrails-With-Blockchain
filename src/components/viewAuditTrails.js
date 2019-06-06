@@ -37,18 +37,6 @@ function ViewAssessment(props) {
           field: 'office',
           sort: 'asc',
           width: 50
-        },
-        {
-          label: 'Office',
-          field: 'office',
-          sort: 'asc',
-          width: 50
-        },
-        {
-          label: 'Office',
-          field: 'office',
-          sort: 'asc',
-          width: 50
         }
       ],
       rows: props.entryList
