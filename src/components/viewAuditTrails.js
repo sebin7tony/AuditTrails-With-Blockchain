@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import { Table } from 'react-bootstrap';
+import React,{Component} from 'react';
 import { MDBDataTable } from 'mdbreact';
 
 class  ViewAssessment extends Component {
@@ -24,7 +23,7 @@ class  ViewAssessment extends Component {
     for (var i = 1; i <= trailCount; i++) {
 
       const entry = await auditTrailList.methods.trails(i).call();
-      const newEntry = {name : entry['name'],date : entry['date'],entryId: entry.id.toHexString()};
+      const newEntry = {name : entry['name'],date : entry['date'],appliedto : entry['appliedto'],value : entry['value'], user : entry['user'],objectidtype : entry['objectidtype'],entryId: entry.id.toHexString()};
       if(existingIds.indexOf(newEntry.entryId)==-1){
         this.setState({
           entryList: [...this.state.entryList, newEntry]
@@ -46,7 +45,7 @@ class  ViewAssessment extends Component {
       let {entryList} = this.state;
       const generateEntries = () => {
         return(
-          this.props.entryList.map((entry,i)=> {
+          entryList.map((entry,i)=> {
             return( 
               <tr key={i}><td>{entry.name}</td><td>{entry.date}</td><td></td></tr>
             )
@@ -57,30 +56,48 @@ class  ViewAssessment extends Component {
         paddingLeft : '50px',
         paddingRight : '50px'
       }
+  const data = {
+      columns: [
+        {
+          label: 'Name',
+          field: 'name',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Date',
+          field: 'date',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Appliedto',
+          field: 'appliedto',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Value',
+          field: 'value',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'User',
+          field: 'user',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Objectidtype',
+          field: 'objectidtype',
+          sort: 'asc',
+          width: 50
+        }
+      ],
+      rows: entryList
+    };
 
-      const data = {
-          columns: [
-            {
-              label: 'Name',
-              field: 'name',
-              sort: 'asc',
-              width: 50
-            },
-            {
-              label: 'Date',
-              field: 'date',
-              sort: 'asc',
-              width: 50
-            },
-            {
-              label: 'Office',
-              field: 'office',
-              sort: 'asc',
-              width: 50
-            }
-          ],
-          rows: entryList
-        };
 
       return (
         <div style={entryStyle}>
