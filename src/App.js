@@ -17,7 +17,7 @@ class App extends Component {
       entryList : [],
       trailCount : 0,
       key: 'create-assessment',
-      auditTrailList : []
+      auditTrailList : null
 
     };
     this.createAuditTrail = this.createAuditTrail.bind(this);
@@ -42,7 +42,7 @@ class App extends Component {
 
       const entry = await this.state.auditTrailList.methods.trails(i).call();
       console.log(entry);
-      const newEntry = {name : entry['name'],date : entry['date']}
+      const newEntry = {name : entry['name'],date : entry['date'],entryId: entry.id.toHexString()}
 
       this.setState({
         entryList: [...this.state.entryList, newEntry]
@@ -55,11 +55,12 @@ class App extends Component {
     console.log('the audit trail values passed',data, this.state.entryList);
     this.state.auditTrailList.methods.addEntry(data.complianceControl,data.timePeriod).send({ from:  this.state.account}) 
     .once('receipt', (receipt) => {
-        console.log("added");
+        console.log("added", receipt);
     });
   }
 
   render(){
+    const {auditTrailList} = this.state;
     return (
       <div className="App">
         <Tabs
@@ -68,10 +69,10 @@ class App extends Component {
           onSelect={key => this.setState({ key })}
         >
           <Tab eventKey="create-assessment" title="Create Assessment">
-            <CreateAssessment createAuditTrail={this.createAuditTrail} />
+            <CreateAssessment createAuditTrail={this.createAuditTrail}  />
           </Tab>
           <Tab eventKey="profile" title="View Audit trails">
-            <ViewAudittrails entryList = {this.state.entryList}/>
+            <ViewAudittrails entryList = {this.state.entryList} tabSelected={this.state.key} auditTrailList = {auditTrailList} />
           </Tab>
         </Tabs>
       </div>
