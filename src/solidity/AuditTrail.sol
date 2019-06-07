@@ -9,15 +9,16 @@ contract AuditTrail {
         uint id;
         string name;
         string date;
+        string appliedto;
+        string value;
+        string user;
+        string objectidtype;
     }
 
-    constructor() public {
-        addEntry("sebin","29june");
-    }
 
-    function addEntry(string memory _name,string memory _date) public {
+    function addEntry(string memory _name,string memory _date,string memory _appliedto,string memory _value,string memory _user,string memory _objectidtype) public {
         incrementCount();
-        trails[trailCount] = Entry(trailCount,_name,_date);
+        trails[trailCount] = Entry(trailCount,_name,_date,_appliedto,_value,_user,_objectidtype);
     }
 
     function incrementCount() internal {

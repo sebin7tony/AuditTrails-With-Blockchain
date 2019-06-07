@@ -1,5 +1,4 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
 import { MDBDataTable } from 'mdbreact';
 
 function ViewAssessment(props) {
@@ -33,8 +32,26 @@ function ViewAssessment(props) {
           width: 50
         },
         {
-          label: 'Office',
-          field: 'office',
+          label: 'Appliedto',
+          field: 'appliedto',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Value',
+          field: 'value',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'User',
+          field: 'user',
+          sort: 'asc',
+          width: 50
+        },
+        {
+          label: 'Objectidtype',
+          field: 'objectidtype',
           sort: 'asc',
           width: 50
         }

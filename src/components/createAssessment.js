@@ -48,17 +48,17 @@ class CreateAssessment extends Component  {
 
                 </p>
                 <Form.Group controlId="formComplianceControl">
-                    <Form.Label>Compliance Control Self Assessment</Form.Label>
-                    <Form.Control type="text" placeholder="Enter compliance text" onChange={this.handleComplianceControl} />
+                    <Form.Label>Compliance Control Self Assessment name</Form.Label>
+                    <Form.Control type="text" placeholder="Enter compliance name" onChange={this.handleComplianceControl} />
                 </Form.Group>
                 <Form.Group controlId="formCompany">
-                    <Form.Label>Company</Form.Label>
+                    <Form.Label>Workflow</Form.Label>
                     <Form.Control as="select"  onChange={this.handleCompany} >
-                        <option>Resolver</option>
-                        <option>Google</option>
-                        <option>Apple</option>
-                        <option>Yahoo</option>
-                        <option>Twitter</option>
+                        <option>LibraryWorkflow</option>    
+                        <option>RiskWorkflow</option>
+                        <option>AuditWorkflow</option>
+                        <option>ERMWorkflow</option>
+                        <option>DefaultWorkflow</option>
                     </Form.Control>
                 </Form.Group>
                 <Container>
