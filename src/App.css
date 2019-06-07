@@ -17,6 +17,10 @@
   color: white;
 }
 
+h2 {
+  font-family: 'Antenna Cond';
+}
+
 .App form {
   box-sizing: border-box;
   padding: 10px;
@@ -24,9 +28,11 @@
 .App .form-wrapper {
   text-align: center;
   box-sizing: border-box;
-  padding: 40px 0px;
+  padding: 40px 20px;
   max-width: 800px;
   margin: 0 auto;
+  border: 1px solid #dadee0;
+  margin-top: 40px;
 }
 
 .App .form-wrapper .container {
