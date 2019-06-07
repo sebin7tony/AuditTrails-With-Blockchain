@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Web3 from 'web3'
-import {Tabs, Tab} from 'react-bootstrap';
+import {Tabs, Tab, Container} from 'react-bootstrap';
 import { TRAIL_LIST_ABI, TRAIL_LIST_ADDRESS } from './config'
 
 //import views over here
@@ -62,6 +62,16 @@ class App extends Component {
     const {auditTrailList} = this.state;
     return (
       <div className="App">
+         <header className="App-header">
+        <img src="https://6jm9qksr60-flywheel.netdna-ssl.com/wp-content/themes/resolver/img/logo-resolver.svg" className="App-logo" alt="logo" />
+        <a
+          className="App-link"
+          href="https://resolver.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+        </a>
+      </header>
         <Tabs
           id="controlled-tab-example"
           activeKey={this.state.key}
