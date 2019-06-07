@@ -52,7 +52,7 @@ class App extends Component {
 
   async createAuditTrail(data) {
     console.log('the audit trail values passed',data, this.state.entryList);
-    this.state.auditTrailList.methods.addEntry(data.complianceControl,new Date().toLocaleString(),data.company,"Create assessment",this.state.account,"10").send({ from:  this.state.account}) 
+    this.state.auditTrailList.methods.addEntry(data.complianceControl,new Date().toLocaleString(),data.company,"Create assessment",this.state.account,data.timePeriod).send({ from:  this.state.account}) 
     .once('receipt', (receipt) => {
         console.log("added", receipt);
     });

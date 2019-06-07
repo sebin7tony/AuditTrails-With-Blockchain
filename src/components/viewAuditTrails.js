@@ -43,14 +43,12 @@ class  ViewAssessment extends Component {
   render() {
 
       let {entryList} = this.state;
-      const generateEntries = () => {
-        return(
-          entryList.map((entry,i)=> {
-            return( 
-              <tr key={i}><td>{entry.name}</td><td>{entry.date}</td><td></td></tr>
-            )
-      }))};
-
+      /*const tableData = [];
+      const tableData = [...entryList];
+      for(let i=0;i<tableData.length;i++ ){
+        delete(tableData[i].entryId)
+      }*/
+      
       const entryStyle = {
         margin : "5%",
         paddingLeft : '50px',

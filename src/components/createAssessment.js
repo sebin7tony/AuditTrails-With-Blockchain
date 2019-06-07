@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-import Web3 from 'web3';
+
 
 class CreateAssessment extends Component  {
 
@@ -8,8 +8,8 @@ class CreateAssessment extends Component  {
         super(props);
         this.state = {
             complianceControl: "",
-            timePeriod: "",
-            company:"",
+            timePeriod: "3",
+            company:"LibraryWorkflow",
             businessUnit:""
         };
         this.handleComplianceControl = this.handleComplianceControl.bind(this);
@@ -20,7 +20,13 @@ class CreateAssessment extends Component  {
 
     sendAssessment(event) {
         event.preventDefault();
-        this.props.createAuditTrail(this.state);
+       // let dummystate = {...this.state};
+        let values = Object.assign({}, this.state);
+ 
+        this.setState({
+            complianceControl: ""
+        });
+        this.props.createAuditTrail(values);
         //send to web3 req
     }
 
@@ -49,11 +55,11 @@ class CreateAssessment extends Component  {
                 </p>
                 <Form.Group controlId="formComplianceControl">
                     <Form.Label>Compliance Control Self Assessment name</Form.Label>
-                    <Form.Control type="text" placeholder="Enter compliance name" onChange={this.handleComplianceControl} />
+                    <Form.Control type="text" placeholder="Enter compliance name" onChange={this.handleComplianceControl} value={this.state.complianceControl} />
                 </Form.Group>
                 <Form.Group controlId="formCompany">
                     <Form.Label>Workflow</Form.Label>
-                    <Form.Control as="select"  onChange={this.handleCompany} >
+                    <Form.Control as="select"  onChange={this.handleCompany} value={this.state.company}>
                         <option>LibraryWorkflow</option>    
                         <option>RiskWorkflow</option>
                         <option>AuditWorkflow</option>
@@ -65,13 +71,13 @@ class CreateAssessment extends Component  {
                     <Row>
                         <Col>
                         <Form.Group controlId="formTimePeriod">
-                            <Form.Label>Time Period</Form.Label>
-                            <Form.Control as="select" onChange={this.handleTimePeriod}>
-                                <option>25 March</option>
-                                <option>25 April</option>
-                                <option>26 June</option>
-                                <option>26 July</option>
-                                <option>26 August</option>
+                            <Form.Label>Object Type ID</Form.Label>
+                            <Form.Control as="select" onChange={this.handleTimePeriod} value={this.state.timePeriod}>
+                                <option>3</option>
+                                <option>14</option>
+                                <option>19</option>
+                                <option>25</option>
+                                <option>34</option>
                             </Form.Control>
                         </Form.Group>
                         </Col>
